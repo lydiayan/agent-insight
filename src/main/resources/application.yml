@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: agent-insight
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    default-property-inclusion: non_null
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/agent_insight?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    validate-on-migrate: false
+    locations: classpath:db/migration
+
+  elasticsearch:
+    uris: ${ELASTICSEARCH_URIS:http://127.0.0.1:19200}
+    connection-timeout: 5s
+    socket-timeout: 30s
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 5s
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    com.agentinsight: debug
+    org.springframework.data.elasticsearch: warn
+
+server:
+  port: 8080
+
+agent:
+  evaluation-token: ${AGENT_EVALUATION_TOKEN:local-evaluation-token-change-me}
+
+agent-insight:
+  elasticsearch:
+    trace-index: ${AGENT_INSIGHT_TRACE_INDEX:rag-traces}
