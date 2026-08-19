@@ -4,7 +4,7 @@ AgentInsight 是一个面向 AI Agent 的全链路观测与自动化评测平台
 
 ## 关联项目
 
-- [ecommerce-order-agent-platform](https://github.com/lydiayan/EcommSpringBot)：订单领域 Agent 平台，提供规划、RAG、记忆、MCP 工具、人工审批和 Trace 数据，是 AgentInsight 的完整接入示例。
+-([ecommerce-order-agent-platform](https://github.com/lydiayan/ecommerce-order-agent-platform))：订单领域 Agent 平台，提供规划、RAG、记忆、MCP 工具、人工审批和 Trace 数据，是 AgentInsight 的完整接入示例。
 
 两个项目保持独立仓库和发布周期：订单 Agent 负责生成标准化 Trace，AgentInsight 负责存储查询、可视化分析和自动化评测。
 
