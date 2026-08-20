@@ -38,12 +38,6 @@ class DashboardServiceImplTest {
     @Mock
     private EvalResultMapper evalResultMapper;
 
-    @Mock
-    private CountResponse totalResponse;
-
-    @Mock
-    private CountResponse okResponse;
-
     private DashboardServiceImpl service;
 
     @BeforeEach
@@ -57,8 +51,8 @@ class DashboardServiceImplTest {
 
     @Test
     void toolRateIncludesNamespacedOperationsAndOnlyTerminalEvents() throws Exception {
-        when(totalResponse.count()).thenReturn(11L);
-        when(okResponse.count()).thenReturn(11L);
+        CountResponse totalResponse = countResponse(11L);
+        CountResponse okResponse = countResponse(11L);
         when(esClient.count(any(CountRequest.class))).thenReturn(totalResponse, okResponse);
 
         double rate = service.opRate("rag-traces", 100L, 200L, AgentOperation.TOOL);
@@ -152,5 +146,11 @@ class DashboardServiceImplTest {
 
     private static TraceIndexProperties traceIndexProperties() {
         return new TraceIndexProperties();
+    }
+
+    private static CountResponse countResponse(long count) {
+        return CountResponse.of(builder -> builder
+                .count(count)
+                .shards(shards -> shards.total(1).successful(1).failed(0)));
     }
 }
