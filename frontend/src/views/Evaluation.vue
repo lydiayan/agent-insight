@@ -11,7 +11,8 @@ const caseStore = useCaseStore()
 // ==================== 发起评测弹窗 ====================
 const runDialogVisible = ref(false)
 const submitting = ref(false)
-const ECOMMERCE_AGENT_ENDPOINT = 'http://127.0.0.1:8087/agent/order/ask'
+const ECOMMERCE_AGENT_ENDPOINT = import.meta.env.VITE_ECOMMERCE_AGENT_ENDPOINT
+  || 'http://127.0.0.1:8087/internal/evaluation/ask'
 const runForm = reactive({
   taskName: '',
   agentEndpoint: ECOMMERCE_AGENT_ENDPOINT,

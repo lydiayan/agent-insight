@@ -67,6 +67,9 @@ public class EvaluationServiceImpl implements EvaluationService {
     @Value("${agent.evaluation-token:}")
     private String evaluationToken;
 
+    @Value("${agent.evaluation-endpoint:}")
+    private String configuredEvaluationEndpoint;
+
     private static final HttpClient http = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(30))
             .build();
@@ -179,7 +182,10 @@ public class EvaluationServiceImpl implements EvaluationService {
         r.collectionStatus = CALL_FAILED;
 
         String endpoint = firstNonBlank(
-                requestedEndpoint, c.getAgentEndpoint(), DEFAULT_ECOMMERCE_AGENT_ENDPOINT);
+                requestedEndpoint,
+                configuredEvaluationEndpoint,
+                c.getAgentEndpoint(),
+                DEFAULT_ECOMMERCE_AGENT_ENDPOINT);
 
         try {
             if (evaluationToken == null || evaluationToken.isBlank()) {
