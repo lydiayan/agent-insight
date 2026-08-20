@@ -18,8 +18,8 @@ jobs:
           distribution: temurin
           java-version: "17"
           cache: maven
-      - name: Run backend tests
-        run: mvn --batch-mode --no-transfer-progress test
+      - name: Verify backend
+        run: mvn --batch-mode --no-transfer-progress verify
 
   frontend:
     runs-on: ubuntu-latest

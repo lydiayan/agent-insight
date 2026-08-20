@@ -1,5 +1,7 @@
 # AgentInsight
 
+[![CI](https://github.com/lydiayan/agent-insight/actions/workflows/ci.yml/badge.svg)](https://github.com/lydiayan/agent-insight/actions/workflows/ci.yml)
+
 AgentInsight 是一个面向 AI Agent 的全链路观测与自动化评测平台。它将 Trace 查询、调用链分析、RAG 与工具质量指标、评测用例管理和在线质量看板集中到一个可独立部署的系统中。
 
 ## 关联项目
